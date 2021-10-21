@@ -134,10 +134,9 @@ var x = i - 1
 
 answerClearBtn.addEventListener('click', button => {
 
-    for (var o = 0; o < historyArray.length; o++) { 
-        lastHistAns.innerText = ""
+    while (historyArray.length > 0){
+  
         historyArray.pop()
-
     }
         
 })
