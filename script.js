@@ -1,11 +1,13 @@
 class Calculator{
-    constructor(previousOperandTextElement, currentOperandTextElement){
+    constructor(previousOperandTextElement, currentOperandTextElement  ){
         this.previousOperandTextElement = previousOperandTextElement
         this.currentOperandTextElement = currentOperandTextElement
-        this.clear
+
+      
     }
 
-    clear(){
+    clear() {
+        this.lastHistAns = this.currentOperand + this.previousOperand
         this.currentOperand =''
         this.previousOperand =''
         this.operation= undefined
@@ -83,31 +85,64 @@ class Calculator{
             }
     }
 
+  
+
     
     updateDisplay(){
 
         this.currentOperandTextElement.innerText = this.getDisplayNumber(this.currentOperand)
         if (this.operation != null){
                    
-        this.previousOperandTextElement.innerText = `${this.previousOperand} ${this.operation} ${this.currentOperand}`
+            this.previousOperandTextElement.innerText = `${this.previousOperand} ${this.operation} ${this.currentOperand}`  
         } else {
-            this.previousOperandTextElement.innerText=''
+                      
         }
     }
 
 }
 
+function question() {
+    questionHist[i] = previousOperandTextElement.innerText
+    answerHistory.innerText = previousOperandTextElement.innerText
+}
+
+function history() {
+
+    historyArray[i] = previousOperandTextElement.innerText + " = " + currentOperandTextElement.innerText
+ 
+    lastHistAns.innerText = historyArray.join(' \r\n')
+    i++
+ 
+    
+}
+ 
 const numberButtons = document.querySelectorAll('[data-number]')
 const operationsButtons = document.querySelectorAll('[data-operation]')
 const equalsButton = document.querySelector('[data-equals]')
 const deleteButton = document.querySelector('[data-delete]')
 const previousOperandTextElement = document.querySelector('[data-previous-operand]')
 const currentOperandTextElement = document.querySelector('[data-current-operand]')
+const answerHistory = document.querySelector('[last-answer]')
 const allClearButton = document.querySelector('[data-allclear]')
-
+const lastHistAns = document.querySelector('[answer-hist]')
 const calculator = new Calculator (previousOperandTextElement,currentOperandTextElement)
+const answerClearBtn = document.querySelector('[clear-answers]')
 
-numberButtons.forEach(button =>{
+var historyArray = []
+var i = historyArray.length
+var x = i - 1
+
+answerClearBtn.addEventListener('click', button => {
+
+    for (var o = 0; o < historyArray.length; o++) { 
+        lastHistAns.innerText = ""
+        historyArray.pop()
+
+    }
+        
+})
+
+numberButtons.forEach(button => {
     button.addEventListener('click',() =>{
         calculator.appendNumber(button.innerText)
         calculator.updateDisplay()
@@ -124,11 +159,16 @@ operationsButtons.forEach(button => {
     })
 })
 
-equalsButton.addEventListener('click', button =>{
+equalsButton.addEventListener('click', button => {
+   
     calculator.compute()
+ 
     calculator.updateDisplay()
  
-   })
+    this.history()
+    console.log()
+    
+})
  
 allClearButton.addEventListener('click', button =>{
     calculator.clear()
