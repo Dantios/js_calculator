@@ -30,11 +30,14 @@ body {
 }
 
 .answer-text {
-    top: 20%;
+    top: 22%;
+    height: 40%;
     width: 10%;
     position: relative;
     font-weight: bold;
     color: white;
+    background-color: #457191;
+    text-align: center;
 }
 
 .calculator-grid > button {
@@ -64,21 +67,32 @@ body {
     word-wrap: break-word;
     word-break: break-all;
 }
-.answer-history > button{
-    top:20%;
-    position: relative;
-}
-    .output .previous-operand {
-        color: green;
-        font-size: 1.5rem;
-    }
 
-    .output .current-operand {
-        color: #1cff02;
-        font-size: 2.5rem;
-    }
+.answer-history > button {
+    top: 20%;
+    position: relative;
+    background-color: #4b72c9; /* Green */
+    color: white;
+    width: 10%;
+    padding: 5px 22px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    /* left: 1%; */
+}
+
+.output .previous-operand {
+    color: green;
+    font-size: 1.5rem;
+}
+
+.output .current-operand {
+    color: #1cff02;
+    font-size: 2.5rem;
+}
 
 .answer-history {
     height: 70vh;
-    width: 100%;
+    width: 70%;
 }
